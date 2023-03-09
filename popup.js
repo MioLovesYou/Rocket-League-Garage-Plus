@@ -1,7 +1,15 @@
 document.addEventListener('DOMContentLoaded', function() {
-    var link = document.getElementById('presetOne');
-    // onClick's logic below:
-    link.addEventListener('click', function() {
-        alert('hello')
+    var presetOne = document.getElementById('presetOne');
+    presetOne.addEventListener('click', function() {
+        chrome.storage.sync.set({'foo': 'hello', 'bar': 'hi'}, function() {
+            console.log('Settings saved');
+          });
+    });
+
+    var presetTwo = document.getElementById('presetTwo');
+    presetTwo.addEventListener('click', function() {
+        chrome.storage.sync.get(['foo', 'bar'], function(items) {
+            alert(JSON.stringify(items))
+          });
     });
 });
