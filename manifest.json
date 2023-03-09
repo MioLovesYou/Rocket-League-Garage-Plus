@@ -1,19 +1,26 @@
- {
-   "manifest_version": 3,
-   "name": "Rocket League Garage Trader",
-   "description": "A simple extension used to automate trading on RLG",
-   "background": {
-     "service_worker": "background.js"
-   },
-   "action": {
-     "default_icon": "icon.png",
-     "default_popup": "popup.html"
-   },
-   "permissions": [
-      "tabs",
-      "storage",
-      "contextMenus",
-      "activeTab"
-    ],
-   "version": "1.0"
+{
+  "name": "Rocket League Garage Trader",
+  "description": "A simple extension used to automate trading on RLG",
+  "version": "1.0",
+  "manifest_version": 3,
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_icon": "icon.png",
+    "default_popup": "popup.html"
+  },
+  "permissions": [
+    "tabs",
+    "storage",
+    "contextMenus",
+    "activeTab",
+    "scripting"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"]
+    }
+  ]
  }
