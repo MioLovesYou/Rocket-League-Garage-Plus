@@ -1,68 +1,46 @@
-// Get the current tab and show an alert message when the button is clicked
 document.addEventListener('DOMContentLoaded', function() {
-document.getElementById('preset1').addEventListener('click', async () => {
-    let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
-    await chrome.scripting.executeScript({
-      target: { tabId: tab.id },
-      func: () => {
-        var hasElements = document.querySelector('.rlg-trade__itemshas ')
-        var items = []
-        while (hasElements.hasChildNodes()) {
-            items.push(hasElements.firstChild);
-            hasElements.removeChild(hasElements.firstChild);
-        }
-        console.log(items[0]);
-      }
-    });
-  });
-})
-/*
-document.addEventListener('DOMContentLoaded', function() {
-    for (var i = 1; i < 6; i++) {
-        document.getElementById(`preset${i}`).addEventListener('click', function() {
-            chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
-                document.getElementById(`preset${i}`).addEventListener('click', function() {
-                  chrome.tabs.executeScript(tabs[0].id, {
-                    code: 'alert("yo")'
-                  });
+    document.getElementById('preset1').addEventListener('click', async () => {
+        let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+        await chrome.scripting.executeScript({
+            target: { tabId: tab.id },
+            func: () => {
+                var hasElements = document.querySelector('.rlg-trade__itemshas ');
+                var wantElements = document.querySelector('.rlg-trade__itemswants ');
+                var items = [];
+                while (hasElements.hasChildNodes()) {
+                    items.push(hasElements.firstChild.outerHTML);
+                    console.log(hasElements.firstChild.outerHTML);
+                    hasElements.removeChild(hasElements.firstChild);
+                }
+                chrome.storage.local.set({
+                    'preset1': items
+                }, function() {
+                    console.log(items)
+                    console.log('Settings saved');
                 });
-              });
-            alert('yo')
+                chrome.storage.local.get('preset1', (data) => {
+                    const parser = new DOMParser();
+                    data['preset1'].forEach(i => {
+                        console.log(parser.parseFromString(i, 'text/html').body.firstChild);
+                        hasElements.appendChild(parser.parseFromString(i, 'text/html').body.firstChild);
+                    })
+                })
+            }
         });
-
-    }
-})
-
-            chrome.storage.sync.set({'foo': 'hello', 'bar': 'hi'}, function() {
-                console.log('Settings saved');
-            });
+    });
 });
 
-        var element = document.getElementsByClassName("rlg-item");
-        element.parentNode.removeChild(element);
-
-    var presetOne = document.getElementById('presetOne');
-    presetOne.addEventListener('click', function() {
-        chrome.storage.sync.set({'foo': 'hello', 'bar': 'hi'}, function() {
-            console.log('Settings saved');
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('preset2').addEventListener('click', async () => {
+        let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+        await chrome.scripting.executeScript({
+            target: { tabId: tab.id },
+            func: () => {
+                var hasElements = document.querySelector('.rlg-trade__itemshas ');
+                chrome.storage.local.get('preset1', function(items) {
+                    console.log(JSON.stringify(items));
+                });
+            }
         });
     });
-
-    var presetTwo = document.getElementById('presetTwo');
-    presetTwo.addEventListener('click', function() {
-        chrome.storage.sync.get(['foo', 'bar'], function(items) {
-            alert(JSON.stringify(items))
-          });
-    });
-document.querySelector('.rlg-item').remove();
-
-    for (var i = 1; i < 6; i++) {
-        document.getElementById(`preset${i}`).addEventListener('click', function() {
-            chrome.storage.sync.set({'foo': 'hello', 'bar': 'hi'}, function() {
-                console.log('Settings saved');
-            });
-            alert('yo')
-        });
-
-    }
-    */
+});
