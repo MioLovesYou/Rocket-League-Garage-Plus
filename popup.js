@@ -23,6 +23,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 }, function() {
                     console.log('Settings saved');
                 });
+
+                // Re-add the items
+                chrome.storage.local.get('preset1', (data) => {
+                    const parser = new DOMParser();
+                    data['preset1'].forEach(i => {
+                        hasElements.appendChild(parser.parseFromString(i, 'text/html').body.firstChild);
+                    })
+                })
             }
         });
     });
