@@ -12,11 +12,14 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
                     console.log(`Attemping bump.`);
                     const buttons = document.querySelectorAll('.rlg-trade__action.rlg-trade__bump.--bump ');
                     buttons.forEach((button) => {
-                    button.click();
+                        setTimeout(() => {
+                            button.click();
+                            console.log(`Clicking... `);
+                        }, 1250)
                     });
                 }
           });
         });
-      }, 10000);
+      }, 20000);
     }
 });
