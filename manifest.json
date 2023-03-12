@@ -3,9 +3,6 @@
   "description": "A simple extension used to automate trading on RLG",
   "version": "1.0",
   "manifest_version": 3,
-  "background": {
-    "service_worker": "background.js"
-  },
   "action": {
     "default_icon": "icon.png",
     "default_popup": "popup.html"
@@ -15,12 +12,13 @@
     "storage",
     "contextMenus",
     "activeTab",
-    "scripting"
+    "scripting",
+    "notifications"
   ],
-  "content_scripts": [
-    {
-      "matches": ["<all_urls>"],
-      "js": ["content.js"]
-    }
+  "background": {
+    "service_worker": "background.js"
+  },
+  "host_permissions": [
+    "https://rocket-league.com/*"
   ]
- }
+}
