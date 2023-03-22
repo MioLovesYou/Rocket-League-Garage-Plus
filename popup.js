@@ -1,3 +1,4 @@
+// Storing preset
 document.addEventListener('DOMContentLoaded', function() {
     for (var i = 1; i < 6; i ++) {
         console.log(`Preset ${i} being setup.`)
@@ -54,6 +55,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
+// Restore preset
 document.addEventListener('DOMContentLoaded', function() {
     for (let i = 1; i < 6; i ++) {
         document.getElementById(`restore${i}`).addEventListener('click', async () => {
@@ -91,4 +93,39 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     }
+});
+document.addEventListener('DOMContentLoaded', function() {
+    chrome.storage.local.get("autoBumperChecked", function(data) {
+        if (data.autoBumperChecked) {
+            document.getElementById("auto-bumper").checked = true;
+        } else {
+            document.getElementById("auto-bumper").checked = false;
+            chrome.storage.local.set({ "autoBumperChecked": false });
+        }
+    });
+    document.getElementById("auto-bumper").addEventListener("change", function() {
+        if (this.checked) {
+            chrome.storage.local.set({ "autoBumperChecked": true });
+            chrome.storage.local.get("autoBumperChecked", (data) => {
+                console.log(data);
+            });
+            chrome.tabs.query({url: "https://rocket-league.com/trades/*"}, function(tabs) {
+                if (tabs.length > 0) {
+                    // Refresh the first tab that matches the URL
+                    chrome.tabs.reload(tabs[0].id);
+                } else {
+                    // Create a new tab with the URL
+                    chrome.tabs.create({url: "https://rocket-league.com/trades/"});
+                }
+            });
+        } else {
+            chrome.storage.local.set({ "autoBumperChecked": false });
+            chrome.storage.local.get("autoBumperChecked", (data) => {
+                console.log(data);
+            });
+        }
+    });
+        chrome.storage.local.get("autoBumperChecked", (data) => {
+            console.log(data);
+        });
 });
