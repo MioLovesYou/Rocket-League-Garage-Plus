@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     chrome.storage.local.get("autoBumperChecked", function(data) {
         if (data.autoBumperChecked) {
             autoBumperCheckbox.checked = true;
+            chrome.storage.local.set({ "autoBumperChecked": true });
         } else {
             autoBumperCheckbox.checked = false;
             chrome.storage.local.set({ "autoBumperChecked": false });
@@ -12,11 +13,18 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     autoBumperCheckbox.addEventListener("change", () => {
-        if (this.checked) {
+        console.log(autoBumperCheckbox.checked)
+        if (autoBumperCheckbox.checked) {
             chrome.storage.local.set({ "autoBumperChecked": true });
             chrome.tabs.query({url: "https://rocket-league.com/trades/*"}, function(tabs) {
                 // Refresh the first tab that matches the URL
                 if (tabs.length > 0) chrome.tabs.reload(tabs[0].id);
+                else {
+                    chrome.storage.local.get("username", (data) => {
+                        if (data.username) chrome.tabs.create({url: `https://rocket-league.com/trades/${data.username}`});
+                        else alert(`To use this, you need to set your username.`);
+                    });
+                }
             }); 
         } else {
             chrome.storage.local.set({ "autoBumperChecked": false });
@@ -33,7 +41,13 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     
     usernameElement.addEventListener("change", () => {
-        chrome.storage.local.set({ "username": usernameElement.value })
+        if (usernameElement.value) {
+            chrome.storage.local.set({ "username": usernameElement.value });
+        }
+        else {
+            chrome.storage.local.remove("username");
+            console.log(`Removed username.`);
+        }
     });
 
 
