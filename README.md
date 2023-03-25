@@ -1,12 +1,12 @@
 <a name="readme-top"></a>
-# Rocket League Garage Trading
+# Rocket League Garage Plus
 
-<!-- ABOUT THE PROJECT -->
 # About The Project
 
-A Chrome extension which improves your experience on the "https://rocket-league.com/" website. The extension's primary focus is the trading aspect of the website & the features are:
+A simple Chrome extension which improves your experience on the "https://rocket-league.com/" website. The extension's primary focus is the trading aspect of the website & the features are:
 - Trade presets
-- Auto-bumping.
+- Auto-bumping
+- Auto-descripion
 
 
 # Project's future
@@ -14,7 +14,7 @@ A Chrome extension which improves your experience on the "https://rocket-league.
 - Optimisation of website 
 - Built-in item prices (E.g., Displays the average price on hover)
 - Premium features 
-- Possibily removal of advertisements
+- ~~Possibily removal of advertisements~~
 
 
 # Additional notes

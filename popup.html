@@ -1,51 +1,44 @@
 <html>
     <head>
         <link rel="stylesheet" href="style.css">
-        <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin="true">
-        <link rel="preconnect" href="https://fonts.gstatic.com">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mulish:wght@200;300;400;500;600;700;800;900&amp;display=swa">
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="popup.js"></script>
-        <title>Calculator</title>
-        
     </head>
     <body>
         <h1 class="title">
-            ROCKET LEAGUE GARAGE TRADER
+            Rocket League Garage Plus
         </h1>
-        <h2 class="sub-title">
-            Auto-bumper:
-            <input type="checkbox" id="auto-bumper" name="auto-bumper" class="auto-bumper" checked>
+        <hr style="width:70%">
 
-        </h2>
-        
         <h2 class="sub-title">
-            Presets
+            Presets:
         </h2>
+        <hr style="width:15%">
 
         
-        <h4 class="preset-title">
-            1.  
-        </h4>
-        <button type="button" id="preset1" class="preset">
-            💾
-            <h6 class="button-description">
-                Save
-            </h6>
-        </button>
-        <button type="button" id="restore1" class="preset">
-            ♻️
-            <h6 class="button-description">
-                Restore
-            </h6>
-        </button>
-        <button type="button" id="clear1" class="preset">
-            🗑️
-            <h6 class="button-description">
-                Del
-            </h6>
-        </button>
+        <div class="preset-wrapper">
+            <h4 class="preset-title">
+                1.  
+            </h4>
+            <button type="button" id="preset1" class="preset">
+                💾
+                <h6 class="button-description">
+                    Save
+                </h6>
+            </button>
+            <button type="button" id="restore1" class="preset">
+                ♻️
+                <h6 class="button-description">
+                    Restore
+                </h6>
+            </button>
+            <button type="button" id="clear1" class="preset">
+                🗑️
+                <h6 class="button-description">
+                    Del
+                </h6>
+            </button>
+         </div>
 
         <br>
 
@@ -141,5 +134,8 @@
                 Del
             </h6>
         </button>
+
+        <button type="button" class="settings" id="settings">⚙️</a>
+
     </body>
 </html>

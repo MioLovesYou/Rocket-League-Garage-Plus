@@ -19,5 +19,11 @@
   },
   "host_permissions": [
     "https://rocket-league.com/*"
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["settings.html"],
+      "matches": ["<all_urls>"]
+    }
   ]
 }

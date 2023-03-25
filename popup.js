@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const hasElements = document.querySelector('.rlg-trade__itemshas');
     const wantElements = document.querySelector('.rlg-trade__itemswants');
 
-    // Storing preset
+    // Storing preset (Saves the current trade)
     for (var i = 1; i < 6; i ++) {
         console.log(`Preset ${i} being setup.`)
         document.getElementById(`preset${i}`).addEventListener('click', (function(i) {
@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
         })(i));
     }
 
-    // Restore preset
+    // Restore preset (Restores the saves presets)
     for (let i = 1; i < 6; i ++) {
         document.getElementById(`restore${i}`).addEventListener('click', async () => {
             let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
@@ -95,30 +95,12 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Auto-bumper
-    const autoBumperCheckbox = document.getElementById("auto-bumper");
 
-    chrome.storage.local.get("autoBumperChecked", function(data) {
-        if (data.autoBumperChecked) {
-            autoBumperCheckbox.checked = true;
-        } else {
-            autoBumperCheckbox.checked = false;
-            chrome.storage.local.set({ "autoBumperChecked": false });
-        }
-    });
+    // Settings
 
-    autoBumperCheckbox.addEventListener("change", function() {
-        if (this.checked) {
-            chrome.storage.local.set({ "autoBumperChecked": true });
-            chrome.tabs.query({url: "https://rocket-league.com/trades/*"}, function(tabs) {
-                // Refresh the first tab that matches the URL
-                if (tabs.length > 0) chrome.tabs.reload(tabs[0].id);
-            }); 
-        } else {
-            chrome.storage.local.set({ "autoBumperChecked": false });
-        }
-        chrome.storage.local.get("autoBumperChecked", (data) => {
-            console.log(data);
-        });
+    document.getElementById(`settings`).addEventListener('click', function() {
+        window.location.href='/settings.html';
+        chrome.action.setPopup({popup: '/settings.html'});
+        console.log(`Redirecting to settings page.`);
     });
 });
