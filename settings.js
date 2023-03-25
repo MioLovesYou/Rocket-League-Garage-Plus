@@ -22,7 +22,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 else {
                     chrome.storage.local.get("username", (data) => {
                         if (data.username) chrome.tabs.create({url: `https://rocket-league.com/trades/${data.username}`});
-                        else alert(`To use this, you need to set your username.`);
+                        else {
+                            autoBumperCheckbox.checked = false;
+                            alert(`To use this, you need to set your username.`);
+                        }
                     });
                 }
             }); 

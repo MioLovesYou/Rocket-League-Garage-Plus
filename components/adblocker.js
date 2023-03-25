@@ -12,6 +12,7 @@ var adObserver = new MutationObserver((mutations) => {
       
       classNames.forEach(className => {
         const ads = document.querySelectorAll(`.${className}`);
+        document.querySelector(".rlg-input").value = "gggggggggggggggggg"
         ads.forEach(ad => {
           if (ad && ad.parentNode) {
             ad.parentNode.removeChild(ad);

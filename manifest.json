@@ -10,7 +10,7 @@
   "permissions": [
     "tabs",
     "storage",
-    "activeTab",
+    "activeTab",  
     "scripting"
   ],
   "background": {

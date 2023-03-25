@@ -60,7 +60,7 @@ body {
 
 .settings , .back {
     position: fixed;
-    font-size: 32px;
+    font-size: 28px;
     bottom: 0;
     right: 0;
     text-decoration: none;
@@ -73,6 +73,28 @@ body {
     box-shadow: 0 4px 12px 0 rgb(146 20 254 / 28%);
     border-radius: 10px 0px 0px 0px;
     padding: 3px;
+}
+
+.btn.btn-primary {
+    font-size: 16px;
+    font-size: 1rem;
+    font-family: rajdhani-medium-webfont,Helvetica,sans-serif;
+    font-style: normal;
+    height: 41px;
+    letter-spacing: 2px;
+    outline: 0;
+    padding: 10px 12px 9px 15px;
+    position: relative;
+    text-transform: uppercase;
+    transition: all .3s ease-in-out;
+    border: 0;
+    color: #fff;
+    cursor: pointer;
+    background-image: linear-gradient(135deg,#C32AFF 0,#9214FE 100%);
+    box-shadow: 0 4px 12px 0 rgb(146 20 254 / 28%);
+    border-radius: 20px;
+    border-radius: 51px;
+    margin-bottom: 20px;
 }
 
 .textBox {

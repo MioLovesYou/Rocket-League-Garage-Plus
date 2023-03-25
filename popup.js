@@ -103,4 +103,10 @@ document.addEventListener('DOMContentLoaded', () => {
         chrome.action.setPopup({popup: '/settings.html'});
         console.log(`Redirecting to settings page.`);
     });
+
+    document.getElementById(`premium`).addEventListener('click', function() {
+        window.location.href='/premium.html';
+        chrome.action.setPopup({popup: '/premium.html'});
+        console.log(`Redirecting to premium page.`);
+    });
 });
