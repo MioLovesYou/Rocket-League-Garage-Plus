@@ -1,6 +1,6 @@
 <a name="readme-top"></a>
 # Rocket League Garage Plus
-
+# This project is now deprecated as Rocket League has removed in-game trading.
 # About The Project
 
 A simple Chrome extension which improves your experience on the "https://rocket-league.com/" website. The extension's primary focus is the trading aspect of the website & the features are:
